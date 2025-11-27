@@ -1,0 +1,190 @@
+import { User, Leave, LeaveBalance, LeaveType, Payslip, Holiday, CompanySettings } from '@/types';
+
+export const currentUser: User = {
+  id: '1',
+  fullName: 'John Doe',
+  email: 'john@company.com',
+  role: 'SUPER_ADMIN',
+  salary: 100000,
+  joiningDate: '2023-01-15',
+  isActive: true,
+};
+
+export const users: User[] = [
+  currentUser,
+  {
+    id: '2',
+    fullName: 'Jane Smith',
+    email: 'jane@company.com',
+    role: 'ADMIN',
+    managerId: '1',
+    salary: 80000,
+    joiningDate: '2023-02-01',
+    isActive: true,
+  },
+  {
+    id: '3',
+    fullName: 'Mike Johnson',
+    email: 'mike@company.com',
+    role: 'MANAGER',
+    managerId: '1',
+    salary: 70000,
+    joiningDate: '2023-03-15',
+    isActive: true,
+  },
+  {
+    id: '4',
+    fullName: 'Sarah Williams',
+    email: 'sarah@company.com',
+    role: 'EMPLOYEE',
+    managerId: '3',
+    salary: 50000,
+    joiningDate: '2023-05-01',
+    isActive: true,
+  },
+  {
+    id: '5',
+    fullName: 'Tom Brown',
+    email: 'tom@company.com',
+    role: 'EMPLOYEE',
+    managerId: '3',
+    salary: 55000,
+    joiningDate: '2023-06-15',
+    isActive: true,
+  },
+];
+
+export const leaveTypes: LeaveType[] = [
+  { id: '1', name: 'Casual Leave', isPaid: true, defaultEntitlement: 12 },
+  { id: '2', name: 'Sick Leave', isPaid: true, defaultEntitlement: 10 },
+  { id: '3', name: 'Earned Leave', isPaid: true, defaultEntitlement: 15 },
+  { id: '4', name: 'Unpaid Leave', isPaid: false, defaultEntitlement: 0 },
+];
+
+export const leaves: Leave[] = [
+  {
+    id: '1',
+    employeeId: '4',
+    employeeName: 'Sarah Williams',
+    leaveTypeId: '1',
+    leaveTypeName: 'Casual Leave',
+    startDate: '2025-11-20',
+    endDate: '2025-11-22',
+    days: 3,
+    status: 'PENDING',
+    appliedBy: '4',
+    createdAt: '2025-11-10T10:00:00Z',
+    reason: 'Family function',
+  },
+  {
+    id: '2',
+    employeeId: '5',
+    employeeName: 'Tom Brown',
+    leaveTypeId: '2',
+    leaveTypeName: 'Sick Leave',
+    startDate: '2025-11-15',
+    endDate: '2025-11-16',
+    days: 2,
+    status: 'APPROVED',
+    appliedBy: '5',
+    approvedBy: '3',
+    createdAt: '2025-11-14T09:00:00Z',
+    reason: 'Medical checkup',
+  },
+  {
+    id: '3',
+    employeeId: '4',
+    employeeName: 'Sarah Williams',
+    leaveTypeId: '3',
+    leaveTypeName: 'Earned Leave',
+    startDate: '2025-10-10',
+    endDate: '2025-10-12',
+    days: 3,
+    status: 'APPROVED',
+    appliedBy: '4',
+    approvedBy: '3',
+    createdAt: '2025-10-01T10:00:00Z',
+    reason: 'Vacation',
+  },
+];
+
+export const leaveBalances: LeaveBalance[] = [
+  {
+    id: '1',
+    employeeId: '4',
+    leaveTypeId: '1',
+    leaveTypeName: 'Casual Leave',
+    year: 2025,
+    opening: 12,
+    accrued: 0,
+    used: 3,
+    adjusted: 0,
+    closing: 9,
+  },
+  {
+    id: '2',
+    employeeId: '4',
+    leaveTypeId: '2',
+    leaveTypeName: 'Sick Leave',
+    year: 2025,
+    opening: 10,
+    accrued: 0,
+    used: 0,
+    adjusted: 0,
+    closing: 10,
+  },
+  {
+    id: '3',
+    employeeId: '4',
+    leaveTypeId: '3',
+    leaveTypeName: 'Earned Leave',
+    year: 2025,
+    opening: 15,
+    accrued: 0,
+    used: 3,
+    adjusted: 0,
+    closing: 12,
+  },
+];
+
+export const payslips: Payslip[] = [
+  {
+    id: '1',
+    payrollRunId: '1',
+    employeeId: '4',
+    employeeName: 'Sarah Williams',
+    basicSalary: 50000,
+    workingDays: 22,
+    absentDays: 0,
+    deductionAmount: 0,
+    netSalary: 50000,
+    month: 10,
+    year: 2025,
+  },
+  {
+    id: '2',
+    payrollRunId: '1',
+    employeeId: '5',
+    employeeName: 'Tom Brown',
+    basicSalary: 55000,
+    workingDays: 22,
+    absentDays: 1,
+    deductionAmount: 2500,
+    netSalary: 52500,
+    month: 10,
+    year: 2025,
+  },
+];
+
+export const holidays: Holiday[] = [
+  { id: '1', date: '2025-01-26', name: 'Republic Day', isOptional: false },
+  { id: '2', date: '2025-08-15', name: 'Independence Day', isOptional: false },
+  { id: '3', date: '2025-10-02', name: 'Gandhi Jayanti', isOptional: false },
+  { id: '4', date: '2025-12-25', name: 'Christmas', isOptional: false },
+  { id: '5', date: '2025-11-14', name: 'Diwali', isOptional: true },
+];
+
+export const companySettings: CompanySettings = {
+  workingDaysPerMonth: 22,
+  allowManagerAddLeave: true,
+};
